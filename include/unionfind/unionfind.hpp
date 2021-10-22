@@ -12,7 +12,7 @@ class UnionFind
 public:
     explicit UnionFind(std::size_t size) noexcept
         : root_(size),
-          rank_(size, 1),
+          size_(size, 1),
           number_of_sets_(size)
     {
         std::iota(std::begin(root_),
@@ -64,14 +64,12 @@ public:
 
         number_of_sets_--;
 
-        if(rank_[x] < rank_[y]) {
-            root_[x] = y;
-        } else if(rank_[x] > rank_[y]) {
-            root_[y] = x;
-        } else {
-            root_[x] = y;
-            rank_[y]++;
+        if(size_[x] < size_[y]) {
+            std::swap(x, y);
         }
+
+        root_[y] = x;
+        size_[x] += size_[y];
     }
 
     [[nodiscard]] auto numberOfSets() const noexcept
@@ -80,10 +78,26 @@ public:
         return number_of_sets_;
     }
 
+    [[nodiscard]] auto sizeOfSetContaining(std::size_t elem) const noexcept
+        -> std::optional<std::size_t>
+    {
+        if(elem >= root_.size()) {
+            return std::nullopt;
+        }
+
+        return size_[root_[elem]];
+    }
+
+    [[nodiscard]] auto sizeOfSetContainingUnsafe(std::size_t elem) const noexcept
+        -> std::size_t
+    {
+        return size_[root_[elem]];
+    }
+
 
 private:
     std::vector<std::size_t, Allocator> root_;
-    std::vector<std::size_t, Allocator> rank_;
+    std::vector<std::size_t, Allocator> size_;
     std::size_t number_of_sets_;
 };
 
