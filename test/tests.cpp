@@ -87,3 +87,27 @@ TEST(UnionFindTest, SimpleMergeTest4)
 
     EXPECT_EQ(uf.numberOfSets(), 1);
 }
+
+TEST(UnionFindTest, NumberOfSetsTest)
+{
+    unionfind::UnionFind uf{5};
+
+    uf.merge(0, 4);
+    uf.merge(2, 3);
+    uf.merge(0, 1);
+    uf.merge(3, 0);
+
+    EXPECT_EQ(uf.find(0), 4);
+    EXPECT_EQ(uf.find(1), 4);
+    EXPECT_EQ(uf.find(2), 4);
+    EXPECT_EQ(uf.find(3), 4);
+    EXPECT_EQ(uf.find(4), 4);
+
+    EXPECT_EQ(uf.numberOfSets(), 1);
+    uf.merge(0, 3);
+    EXPECT_EQ(uf.numberOfSets(), 1);
+    uf.merge(1, 3);
+    EXPECT_EQ(uf.numberOfSets(), 1);
+    uf.merge(3, 4);
+    EXPECT_EQ(uf.numberOfSets(), 1);
+}
