@@ -9,6 +9,10 @@ namespace unionfind {
 template<class Allocator = std::allocator<std::size_t>>
 class UnionFind
 {
+    std::vector<std::size_t, Allocator> root_;
+    std::vector<std::size_t, Allocator> size_;
+    std::size_t number_of_sets_;
+
 public:
     explicit UnionFind(std::size_t size) noexcept
         : root_(size),
@@ -118,12 +122,6 @@ private:
         root_[y] = x;
         size_[x] += size_[y];
     }
-
-
-private:
-    std::vector<std::size_t, Allocator> root_;
-    std::vector<std::size_t, Allocator> size_;
-    std::size_t number_of_sets_;
 };
 
 } // namespace unionfind
