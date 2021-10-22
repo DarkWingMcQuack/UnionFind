@@ -6,6 +6,7 @@
 
 namespace unionfind {
 
+template<class Allocator = std::allocator<std::size_t>>
 class UnionFind
 {
 public:
@@ -81,8 +82,8 @@ public:
 
 
 private:
-    std::vector<std::size_t> root_;
-    std::vector<std::size_t> rank_;
+    std::vector<std::size_t, Allocator> root_;
+    std::vector<std::size_t, Allocator> rank_;
     std::size_t number_of_sets_;
 };
 
