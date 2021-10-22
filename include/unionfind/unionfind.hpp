@@ -78,20 +78,21 @@ public:
         return number_of_sets_;
     }
 
-    [[nodiscard]] auto sizeOfSetContaining(std::size_t elem) const noexcept
+    [[nodiscard]] auto sizeOfSetContaining(std::size_t elem) noexcept
         -> std::optional<std::size_t>
     {
-        if(elem >= root_.size()) {
+        auto root_opt = find(elem);
+        if(!root_opt) {
             return std::nullopt;
         }
-
-        return size_[root_[elem]];
+        return size_[root_opt.value()];
     }
 
-    [[nodiscard]] auto sizeOfSetContainingUnsafe(std::size_t elem) const noexcept
+    [[nodiscard]] auto sizeOfSetContainingUnsafe(std::size_t elem) noexcept
         -> std::size_t
     {
-        return size_[root_[elem]];
+        auto root = findUnsafe(elem);
+        return size_[root];
     }
 
 
