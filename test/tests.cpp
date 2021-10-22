@@ -88,6 +88,37 @@ TEST(UnionFindTest, SimpleMergeTest4)
     EXPECT_EQ(uf.numberOfSets(), 1);
 }
 
+TEST(UnionFindTest, VariadicMergeTest1)
+{
+    unionfind::UnionFind uf{5};
+
+    uf.merge(0, 4, 3, 1, 2);
+
+    EXPECT_EQ(uf.find(0), 0);
+    EXPECT_EQ(uf.find(1), 0);
+    EXPECT_EQ(uf.find(2), 0);
+    EXPECT_EQ(uf.find(3), 0);
+    EXPECT_EQ(uf.find(4), 0);
+
+    EXPECT_EQ(uf.numberOfSets(), 1);
+}
+
+TEST(UnionFindTest, VariadicMergeTest2)
+{
+    unionfind::UnionFind uf{5};
+
+    uf.merge(0, 4, 3);
+    uf.merge(1, 2);
+
+    EXPECT_EQ(uf.find(0), 0);
+    EXPECT_EQ(uf.find(1), 1);
+    EXPECT_EQ(uf.find(2), 1);
+    EXPECT_EQ(uf.find(3), 0);
+    EXPECT_EQ(uf.find(4), 0);
+
+    EXPECT_EQ(uf.numberOfSets(), 2);
+}
+
 TEST(UnionFindTest, NumberOfSetsTest)
 {
     unionfind::UnionFind uf{5};
