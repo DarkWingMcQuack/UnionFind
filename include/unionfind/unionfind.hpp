@@ -1,7 +1,5 @@
 #pragma once
 
-#include <compare>
-#include <functional>
 #include <numeric>
 #include <optional>
 #include <vector>
