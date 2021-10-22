@@ -121,4 +121,67 @@ TEST(UnionFindTest, SizeOfSetsTest)
     uf.merge(0, 1);
 
     EXPECT_EQ(uf.sizeOfSetContaining(0), 4);
+    EXPECT_EQ(uf.sizeOfSetContaining(1), 4);
+    EXPECT_EQ(uf.sizeOfSetContaining(2), 4);
+    EXPECT_EQ(uf.sizeOfSetContaining(3), 1);
+    EXPECT_EQ(uf.sizeOfSetContaining(4), 4);
+    EXPECT_EQ(uf.sizeOfSetContaining(5), 1);
+    EXPECT_EQ(uf.sizeOfSetContaining(6), 1);
+    EXPECT_EQ(uf.sizeOfSetContaining(7), 1);
+    EXPECT_EQ(uf.sizeOfSetContaining(8), 1);
+    EXPECT_EQ(uf.sizeOfSetContaining(9), 1);
+
+    uf.merge(3, 6);
+    uf.merge(5, 7);
+
+    EXPECT_EQ(uf.sizeOfSetContaining(0), 4);
+    EXPECT_EQ(uf.sizeOfSetContaining(1), 4);
+    EXPECT_EQ(uf.sizeOfSetContaining(2), 4);
+    EXPECT_EQ(uf.sizeOfSetContaining(3), 2);
+    EXPECT_EQ(uf.sizeOfSetContaining(4), 4);
+    EXPECT_EQ(uf.sizeOfSetContaining(5), 2);
+    EXPECT_EQ(uf.sizeOfSetContaining(6), 2);
+    EXPECT_EQ(uf.sizeOfSetContaining(7), 2);
+    EXPECT_EQ(uf.sizeOfSetContaining(8), 1);
+    EXPECT_EQ(uf.sizeOfSetContaining(9), 1);
+
+
+    uf.merge(3, 8);
+
+    EXPECT_EQ(uf.sizeOfSetContaining(0), 4);
+    EXPECT_EQ(uf.sizeOfSetContaining(1), 4);
+    EXPECT_EQ(uf.sizeOfSetContaining(2), 4);
+    EXPECT_EQ(uf.sizeOfSetContaining(3), 3);
+    EXPECT_EQ(uf.sizeOfSetContaining(4), 4);
+    EXPECT_EQ(uf.sizeOfSetContaining(5), 2);
+    EXPECT_EQ(uf.sizeOfSetContaining(6), 3);
+    EXPECT_EQ(uf.sizeOfSetContaining(7), 2);
+    EXPECT_EQ(uf.sizeOfSetContaining(8), 3);
+    EXPECT_EQ(uf.sizeOfSetContaining(9), 1);
+
+    uf.merge(3, 5);
+
+    EXPECT_EQ(uf.sizeOfSetContaining(0), 4);
+    EXPECT_EQ(uf.sizeOfSetContaining(1), 4);
+    EXPECT_EQ(uf.sizeOfSetContaining(2), 4);
+    EXPECT_EQ(uf.sizeOfSetContaining(3), 5);
+    EXPECT_EQ(uf.sizeOfSetContaining(4), 4);
+    EXPECT_EQ(uf.sizeOfSetContaining(5), 5);
+    EXPECT_EQ(uf.sizeOfSetContaining(6), 5);
+    EXPECT_EQ(uf.sizeOfSetContaining(7), 5);
+    EXPECT_EQ(uf.sizeOfSetContaining(8), 5);
+    EXPECT_EQ(uf.sizeOfSetContaining(9), 1);
+
+    uf.merge(3, 0);
+
+    EXPECT_EQ(uf.sizeOfSetContaining(0), 9);
+    EXPECT_EQ(uf.sizeOfSetContaining(1), 9);
+    EXPECT_EQ(uf.sizeOfSetContaining(2), 9);
+    EXPECT_EQ(uf.sizeOfSetContaining(3), 9);
+    EXPECT_EQ(uf.sizeOfSetContaining(4), 9);
+    EXPECT_EQ(uf.sizeOfSetContaining(5), 9);
+    EXPECT_EQ(uf.sizeOfSetContaining(6), 9);
+    EXPECT_EQ(uf.sizeOfSetContaining(7), 9);
+    EXPECT_EQ(uf.sizeOfSetContaining(8), 9);
+    EXPECT_EQ(uf.sizeOfSetContaining(9), 1);
 }
