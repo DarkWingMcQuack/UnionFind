@@ -25,7 +25,8 @@ auto main(int argc, char **argv)-> int
     assert(uf.find(0) ==uf.find(1));
     assert(uf.find(1) ==uf.find(2));
     
-    // if it is known that the passed argument is in the valid range UnionFind::findUnsafe can be used instead
+    // if it is known that the passed argument is in 
+    // a valid range UnionFind::findUnsafe can be used instead
     std::size_t zero = uf.findUnsafe(0);
 
     // UnionFind::numberOfSets returns the number of disjoint sets in the datastructure
