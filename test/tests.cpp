@@ -28,11 +28,11 @@ TEST(UnionFindTest, SimpleMergeTest0)
 
     uf.merge(0, 4);
 
-    EXPECT_EQ(uf.find(0), 4);
+    EXPECT_EQ(uf.find(0), 0);
     EXPECT_EQ(uf.find(1), 1);
     EXPECT_EQ(uf.find(2), 2);
     EXPECT_EQ(uf.find(3), 3);
-    EXPECT_EQ(uf.find(4), 4);
+    EXPECT_EQ(uf.find(4), 0);
 
     EXPECT_EQ(uf.numberOfSets(), 4);
 }
@@ -44,11 +44,11 @@ TEST(UnionFindTest, SimpleMergeTest2)
     uf.merge(0, 4);
     uf.merge(2, 3);
 
-    EXPECT_EQ(uf.find(0), 4);
+    EXPECT_EQ(uf.find(0), 0);
     EXPECT_EQ(uf.find(1), 1);
-    EXPECT_EQ(uf.find(2), 3);
-    EXPECT_EQ(uf.find(3), 3);
-    EXPECT_EQ(uf.find(4), 4);
+    EXPECT_EQ(uf.find(2), 2);
+    EXPECT_EQ(uf.find(3), 2);
+    EXPECT_EQ(uf.find(4), 0);
 
     EXPECT_EQ(uf.numberOfSets(), 3);
 }
@@ -61,11 +61,11 @@ TEST(UnionFindTest, SimpleMergeTest3)
     uf.merge(2, 3);
     uf.merge(0, 1);
 
-    EXPECT_EQ(uf.find(0), 4);
-    EXPECT_EQ(uf.find(1), 4);
-    EXPECT_EQ(uf.find(2), 3);
-    EXPECT_EQ(uf.find(3), 3);
-    EXPECT_EQ(uf.find(4), 4);
+    EXPECT_EQ(uf.find(0), 0);
+    EXPECT_EQ(uf.find(1), 0);
+    EXPECT_EQ(uf.find(2), 2);
+    EXPECT_EQ(uf.find(3), 2);
+    EXPECT_EQ(uf.find(4), 0);
 
     EXPECT_EQ(uf.numberOfSets(), 2);
 }
@@ -79,11 +79,11 @@ TEST(UnionFindTest, SimpleMergeTest4)
     uf.merge(0, 1);
     uf.merge(3, 0);
 
-    EXPECT_EQ(uf.find(0), 4);
-    EXPECT_EQ(uf.find(1), 4);
-    EXPECT_EQ(uf.find(2), 4);
-    EXPECT_EQ(uf.find(3), 4);
-    EXPECT_EQ(uf.find(4), 4);
+    EXPECT_EQ(uf.find(0), 0);
+    EXPECT_EQ(uf.find(1), 0);
+    EXPECT_EQ(uf.find(2), 0);
+    EXPECT_EQ(uf.find(3), 0);
+    EXPECT_EQ(uf.find(4), 0);
 
     EXPECT_EQ(uf.numberOfSets(), 1);
 }
@@ -97,11 +97,11 @@ TEST(UnionFindTest, NumberOfSetsTest)
     uf.merge(0, 1);
     uf.merge(3, 0);
 
-    EXPECT_EQ(uf.find(0), 4);
-    EXPECT_EQ(uf.find(1), 4);
-    EXPECT_EQ(uf.find(2), 4);
-    EXPECT_EQ(uf.find(3), 4);
-    EXPECT_EQ(uf.find(4), 4);
+    EXPECT_EQ(uf.find(0), 0);
+    EXPECT_EQ(uf.find(1), 0);
+    EXPECT_EQ(uf.find(2), 0);
+    EXPECT_EQ(uf.find(3), 0);
+    EXPECT_EQ(uf.find(4), 0);
 
     EXPECT_EQ(uf.numberOfSets(), 1);
     uf.merge(0, 3);
@@ -110,4 +110,15 @@ TEST(UnionFindTest, NumberOfSetsTest)
     EXPECT_EQ(uf.numberOfSets(), 1);
     uf.merge(3, 4);
     EXPECT_EQ(uf.numberOfSets(), 1);
+}
+
+TEST(UnionFindTest, SizeOfSetsTest)
+{
+    unionfind::UnionFind uf{10};
+
+    uf.merge(0, 4);
+    uf.merge(0, 2);
+    uf.merge(0, 1);
+
+    EXPECT_EQ(uf.sizeOfSetContaining(0), 4);
 }
