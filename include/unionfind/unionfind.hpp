@@ -45,7 +45,48 @@ public:
         return x;
     }
 
-    auto merge(std::size_t x, std::size_t y) noexcept
+    //use a variadic template here to allow merging multiple sets
+    template<class Head0, class Head1, class... Tail>
+    auto merge(Head0 head0, Head1 head1, Tail... tail) noexcept
+        -> void
+    {
+        static_assert(std::is_integral_v<Head0>, "all arguments passed to merge need to be integral");
+        static_assert(std::is_integral_v<Head1>, "all arguments passed to merge need to be integral");
+
+        if constexpr(sizeof...(tail) == 0) {
+            unite(head0, head1);
+        } else {
+            unite(head0, head1);
+            merge(head1, tail...);
+        }
+    }
+
+
+    [[nodiscard]] auto numberOfSets() const noexcept
+        -> std::size_t
+    {
+        return number_of_sets_;
+    }
+
+    [[nodiscard]] auto sizeOfSetContaining(std::size_t elem) noexcept
+        -> std::optional<std::size_t>
+    {
+        auto root_opt = find(elem);
+        if(!root_opt) {
+            return std::nullopt;
+        }
+        return size_[root_opt.value()];
+    }
+
+    [[nodiscard]] auto sizeOfSetContainingUnsafe(std::size_t elem) noexcept
+        -> std::size_t
+    {
+        auto root = findUnsafe(elem);
+        return size_[root];
+    }
+
+private:
+    auto unite(std::size_t x, std::size_t y) noexcept
         -> void
     {
         const auto x_opt = find(x);
@@ -70,29 +111,6 @@ public:
 
         root_[y] = x;
         size_[x] += size_[y];
-    }
-
-    [[nodiscard]] auto numberOfSets() const noexcept
-        -> std::size_t
-    {
-        return number_of_sets_;
-    }
-
-    [[nodiscard]] auto sizeOfSetContaining(std::size_t elem) noexcept
-        -> std::optional<std::size_t>
-    {
-        auto root_opt = find(elem);
-        if(!root_opt) {
-            return std::nullopt;
-        }
-        return size_[root_opt.value()];
-    }
-
-    [[nodiscard]] auto sizeOfSetContainingUnsafe(std::size_t elem) noexcept
-        -> std::size_t
-    {
-        auto root = findUnsafe(elem);
-        return size_[root];
     }
 
 
