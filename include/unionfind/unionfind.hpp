@@ -20,6 +20,12 @@ public:
                   0);
     }
 
+    UnionFind() = delete;
+    UnionFind(UnionFind&&) noexcept = default;
+    UnionFind(const UnionFind&) noexcept = default;
+    auto operator=(UnionFind&&) noexcept -> UnionFind& = default;
+    auto operator=(const UnionFind&) noexcept -> UnionFind& = default;
+
     [[nodiscard]] auto find(std::size_t x) noexcept
         -> std::optional<std::size_t>
     {
