@@ -89,8 +89,8 @@ public:
             return false;
         }
 
-        auto head0_root_opt = find(head0);
-        auto head1_root_opt = find(head1);
+        const auto head0_root_opt = find(head0);
+        const auto head1_root_opt = find(head1);
 
         if(!head0_root_opt or !head1_root_opt) {
             return false;
