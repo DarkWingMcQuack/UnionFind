@@ -10,7 +10,7 @@ This repository contains a single-file header-only C++17 [disjoint-set structure
 auto main(int argc, char **argv)-> int
 {
     // create a disjoint-set structure for 5 sets.
-    unionfind::UnionFind uf{5};
+    unionfind::UnionFind uf{10};
     
     // merge sets 0 and 1
     uf.merge(0, 1);
@@ -22,8 +22,8 @@ auto main(int argc, char **argv)-> int
     // than the number of elements with which the UnionFind structure was created.
     std::optional<std::size_t> zero_opt = uf.find(0);
     
-    assert(uf.find(0) ==uf.find(1));
-    assert(uf.find(1) ==uf.find(2));
+    assert(uf.find(0) == uf.find(1));
+    assert(uf.find(1) == uf.find(2));
     
     // if it is known that the passed argument is in 
     // a valid range UnionFind::findUnsafe can be used instead
@@ -32,7 +32,19 @@ auto main(int argc, char **argv)-> int
     // UnionFind::numberOfSets returns the number of disjoint sets in the datastructure
     auto sets = uf.numberOfSets();
     
-    // uf contains 3 sets: {0, 1, 2}, {3}, {4}
+    // uf contains 3 sets: {0, 1, 2}, {3}, {4}, {5}, {6}, {7}, {8}, {9}
     assert(sets == 3);
+    
+    // it is also possible to call merge with any number of parameters
+    uf.merge(5, 6, 7, 8, 9);
+    
+    // size_opt contains the number of elements the set in which 5 is an element of
+    // if the passed argument is not an element size_opt would be std::nullopt
+    std::optional<std::size_t> size_opt = uf.sizeOfSetContaining(5);
+    assert(size_opt.value() == 5);
+    
+    // there also exists an unsave variant
+    std::size_t size = uf.sizeOfSetContainingUnsafe(5);
+    assert(size == 5);
 }
 ```
