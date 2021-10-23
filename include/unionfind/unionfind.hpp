@@ -78,6 +78,32 @@ public:
         return number_of_sets_;
     }
 
+    template<class Head0, class Head1, class... Tail>
+    [[nodiscard]] auto areConnected(Head0 head0, Head1 head1, Tail... tail) noexcept
+        -> bool
+    {
+        static_assert(std::is_integral_v<Head0>, "all arguments passed to areConnected need to be integral");
+        static_assert(std::is_integral_v<Head1>, "all arguments passed to areConnected need to be integral");
+
+        if(!isValidElement(head0) || !isValidElement(head1)) {
+            return false;
+        }
+
+        auto head0_root_opt = find(head0);
+        auto head1_root_opt = find(head1);
+
+        if(!head0_root_opt or !head1_root_opt) {
+            return false;
+        }
+
+        auto connected = head0_root_opt == head1_root_opt;
+        if constexpr(sizeof...(tail) == 0) {
+            return connected;
+        } else {
+            return connected && areConnected(head1, tail...);
+        }
+    }
+
     [[nodiscard]] auto isValidElement(std::size_t elem) const noexcept
         -> bool
     {

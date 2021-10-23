@@ -20,6 +20,11 @@ TEST(UnionFindTest, UnmergedTest)
     EXPECT_EQ(uf.find(4), 4);
 
     EXPECT_EQ(uf.numberOfSets(), 5);
+
+    EXPECT_FALSE(uf.areConnected(0, 1));
+    EXPECT_FALSE(uf.areConnected(1, 2));
+    EXPECT_FALSE(uf.areConnected(2, 3));
+    EXPECT_FALSE(uf.areConnected(3, 4));
 }
 
 TEST(UnionFindTest, SimpleMergeTest0)
@@ -35,6 +40,7 @@ TEST(UnionFindTest, SimpleMergeTest0)
     EXPECT_EQ(uf.find(4), 0);
 
     EXPECT_EQ(uf.numberOfSets(), 4);
+    EXPECT_TRUE(uf.areConnected(0, 4));
 }
 
 TEST(UnionFindTest, SimpleMergeTest2)
@@ -51,6 +57,9 @@ TEST(UnionFindTest, SimpleMergeTest2)
     EXPECT_EQ(uf.find(4), 0);
 
     EXPECT_EQ(uf.numberOfSets(), 3);
+
+    EXPECT_TRUE(uf.areConnected(0, 4));
+    EXPECT_TRUE(uf.areConnected(2, 3));
 }
 
 TEST(UnionFindTest, SimpleMergeTest3)
@@ -68,6 +77,9 @@ TEST(UnionFindTest, SimpleMergeTest3)
     EXPECT_EQ(uf.find(4), 0);
 
     EXPECT_EQ(uf.numberOfSets(), 2);
+
+    EXPECT_TRUE(uf.areConnected(0, 4, 1));
+    EXPECT_TRUE(uf.areConnected(2, 3));
 }
 
 TEST(UnionFindTest, SimpleMergeTest4)
@@ -86,6 +98,8 @@ TEST(UnionFindTest, SimpleMergeTest4)
     EXPECT_EQ(uf.find(4), 0);
 
     EXPECT_EQ(uf.numberOfSets(), 1);
+
+    EXPECT_TRUE(uf.areConnected(0, 1, 2, 3, 4));
 }
 
 TEST(UnionFindTest, VariadicMergeTest1)
@@ -101,6 +115,8 @@ TEST(UnionFindTest, VariadicMergeTest1)
     EXPECT_EQ(uf.find(4), 0);
 
     EXPECT_EQ(uf.numberOfSets(), 1);
+
+    EXPECT_TRUE(uf.areConnected(0, 1, 2, 3, 4));
 }
 
 TEST(UnionFindTest, VariadicMergeTest2)
@@ -117,6 +133,9 @@ TEST(UnionFindTest, VariadicMergeTest2)
     EXPECT_EQ(uf.find(4), 0);
 
     EXPECT_EQ(uf.numberOfSets(), 2);
+
+    EXPECT_TRUE(uf.areConnected(1, 2));
+    EXPECT_TRUE(uf.areConnected(0, 3, 4));
 }
 
 TEST(UnionFindTest, NumberOfSetsTest)
