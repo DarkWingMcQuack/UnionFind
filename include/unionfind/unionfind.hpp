@@ -78,6 +78,12 @@ public:
         return number_of_sets_;
     }
 
+    [[nodiscard]] auto isValidElement(std::size_t elem) const noexcept
+        -> bool
+    {
+        return elem < root_.size();
+    }
+
     [[nodiscard]] auto sizeOfSetContaining(std::size_t elem) noexcept
         -> std::optional<std::size_t>
     {
