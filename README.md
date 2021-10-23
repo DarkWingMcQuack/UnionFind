@@ -30,7 +30,7 @@ auto main(int argc, char **argv)-> int
     std::size_t zero = uf.findUnsafe(0);
 
     // UnionFind::numberOfSets returns the number of disjoint sets in the datastructure
-    auto sets = uf.numberOfSets();
+    std::size_t sets = uf.numberOfSets();
     
     // uf contains 3 sets: {0, 1, 2}, {3}, {4}, {5}, {6}, {7}, {8}, {9}
     assert(sets == 3);
