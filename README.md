@@ -1,5 +1,5 @@
 # UnionFind
-[![Language](https://img.shields.io/badge/C%2B%2B-17/20-blue.svg)](https://en.wikipedia.org/wiki/C%2B%2B#Standardization) [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+[![Language](https://img.shields.io/badge/C%2B%2B-17/20-blue.svg)](https://en.wikipedia.org/wiki/C%2B%2B#Standardization) [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT) [![Build Status](https://app.travis-ci.com/DarkWingMcQuack/UnionFind.svg?branch=master)](https://app.travis-ci.com/DarkWingMcQuack/UnionFind)
 
 This repository contains a single-file header-only C++17 [disjoint-set structure](https://en.wikipedia.org/wiki/Disjoint-set_data_structure) with union-by-size and path compression.
 
