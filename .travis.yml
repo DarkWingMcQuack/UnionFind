@@ -14,7 +14,9 @@ before_script:
   - cd build
   - cmake ..
 
-script: make && ./test/unit_tests
+script:
+  - make
+  - ./test/unit_tests
 
 matrix:
   include:
