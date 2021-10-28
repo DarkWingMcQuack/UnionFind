@@ -32,8 +32,8 @@ auto main(int argc, char **argv)-> int
     // UnionFind::numberOfSets returns the number of disjoint sets in the datastructure
     std::size_t sets = uf.numberOfSets();
     
-    // uf contains 3 sets: {0, 1, 2}, {3}, {4}, {5}, {6}, {7}, {8}, {9}
-    assert(sets == 3);
+    // uf contains 8 sets: {0, 1, 2}, {3}, {4}, {5}, {6}, {7}, {8}, {9}
+    assert(sets == 8);
     
     // it is also possible to call merge with any number of parameters
     uf.merge(5, 6, 7, 8, 9);
